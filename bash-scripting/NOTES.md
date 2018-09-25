@@ -9,17 +9,17 @@ THE BOURNE AGAIN SHELL
 - Licensed under GPL rather than the BSD license like the bourne shell.
 
 # BASH FILES
-## .bash_profile
+### .bash_profile
 - Main difference between this and bashrc is, bash_profile only sourced when you log in. Where bashrc sourced everytime you run another terminal.
 - a profile for every user. the global profile exists in /etc/profile
 - the ideal place to set up custom path PATH=$PATH:$HOME/bin
 - these profile 'files' are actually a script within itself so you usually can run it.
 
-## .bashrc
+### .bashrc
 - it is run before the shell actually comes out.
 - basically a dotfiles, boring stuffs.
 
-## bash_history
+### bash_history
 - a file storing history of commands that been executed with bash.
 - newest at the bottong, oldest at the top, not numbered like zsh
 - there is an environment variable dalled $HISTCONTROL which controlling how history behaves, like for instance *ignoredup* which will ignore duplicates
@@ -28,7 +28,7 @@ THE BOURNE AGAIN SHELL
     -  another example HISTCONTROL=$HISTCONTROL:ignoredups:ignorespace
 - _ignorespace_ will not record any command that starts with ' ' (space)
 
-## bash_logout
+### bash_logout
 - a file that will be run everytime you logout from the shell
 - can have interesting interactions with bash_login for example
     - bash_login will backup the .bashrc into .bashrc.orig
@@ -85,7 +85,7 @@ THE BOURNE AGAIN SHELL
     - if [ "$?" = "0" ]; then execute the command -> if it is a zero exit code then execute the command
 
 # Functions
-## Simple Functions
+### Simple Functions
 - functions cant be empty
 - IT IS NOT AN OBJECT!!
 - You *cant* call a function if it is not defined yet, like if you define a function at the bottom of the script
@@ -99,15 +99,15 @@ THE BOURNE AGAIN SHELL
 - Its one of a best/good practice to structure your commands inside a function
     - see functionsctructure.sh inside bin
 
-## Function with parameters
+### Function with parameters
 - see bin/function-params.sh
 - Function can take parameter, just like scripts in general, they behave the same way in taking an argument
 
-## Nested Functions
+### Nested Functions
 - see bin/nested-function.sh (this is just an example, dont get mad because of gender issues)
 - Like what its called, it is a function inside a function
 
-## Function return and exit
+### Function return and exit
 - see bin/function-ret.sh
 - return value is like the exit code of the script, without actually exitting
 - for example `return 4` will pass a 4 return value outside the function
@@ -120,10 +120,10 @@ THE BOURNE AGAIN SHELL
 - Local variable defined inside a function can be read from the script *ONLY IF* the function already called
 - Try to define accordingly and not defining all things in global variables
 
-# The dialog box
+### The dialog box
 - Create dialog box, ncurses based
 
-## The Infobox
+### The Infobox
 - A method of popping up a ncurses dialog box
 - install the `dialog` package to be able to create an infobox
 - man 1 dialog
