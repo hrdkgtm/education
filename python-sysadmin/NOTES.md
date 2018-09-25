@@ -61,9 +61,9 @@ https://docs.python.org/3/whatsnew/3.0.html
     "helloolleh".find('ll')
     "helloOLLEH".lower()
     ```
-    this command will output =
-        - 1
-        - 2
-        - helloolleh
+    this command will output
+    - 1
+    - 2
+    - helloolleh
     because you operate a function to the string
 
