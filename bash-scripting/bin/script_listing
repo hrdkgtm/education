@@ -1,0 +1,436 @@
+#!/bin/less
+=============================
+SCRIPT NAME : adv-inputbox.sh 
+=============================
+#!/bin/bash
+# demo of advanced ncurses UI - the inputbox
+
+# GLOBAL VARIABLE DECLARATIONS
+INPUTBOX=${INPUTBOX=dialog}
+TITLE="Default"
+MESSAGE="Some Message"
+XC=20
+YC=40
+USERINPUT=input.tmp
+
+# FUNCTIONS DEFINITION
+## Display the input box
+funcInputBox () {
+    $INPUTBOX --title "$1" --inputbox "$2" "$3" "$4" 2> $USERINPUT
+}
+
+
+# START OF SCRIPT
+funcInputBox "Display File Name" "Which file in the current directory do you want to display?" $XC $YC
+
+if [[ "`cat $USERINPUT`" != "" ]]; then
+    cat "`cat $USERINPUT`"  ### why is this confusing? because we want to read the file that is DEFINED inside the $USERINPUT and not the CONTENTS OF $USERINPUT
+else
+    echo "nothing to do"
+fi
+rm $USERINPUT # general housekeeping
+=============================
+SCRIPT NAME : adv-msgbox.sh 
+=============================
+#!/bin/bash
+# demo of advanced ncurses UI for menu
+
+
+# GLOBAL VARIABLE DECLARATION
+MENUBOX=${MENUBOX=dialog}
+CHOICE="userchoice"
+
+# FUNCTION DEFINITIONS
+## The function to display simple menu
+funcMenuBox () {
+    $MENUBOX --title "[ M A I N  M E N U ]" --menu "Use UP/DOWN Arrow to Move and Select or the number accordingly" 15 45 4 1 "Display Hello World" 2 "Display Goodbye World" 3 "Display Hostname" X "Quit" 2> $CHOICE
+}
+
+
+# START OF SCRIPT
+funcMenuBox
+case "`cat $CHOICE`" in
+    1) echo "Hello World!!!";;
+    2) echo "Goodbye World...";;
+    3) echo $HOST ;;
+    X) echo "Exit" ;;
+esac
+rm $CHOICE
+=============================
+SCRIPT NAME : confirmationbox.sh 
+=============================
+#!/bin/bash
+# demo of dialog box with confirmation button
+
+# SETTING GLOBAL VAR
+## DEFAULTS
+MSGBOX=${MSGBOX=dialog}
+TITLE="Default"
+MESSAGE="Some Message"
+XC=20
+YC=30
+
+# FUNCTION DEFINITION
+## Display the message box with our message
+funcDisplayMsg () {
+    $MSGBOX --title "$1" --msgbox "$2" "$3" "$4"
+}
+
+# START OF SCRIPT
+if [[ "$1" == "shutdown" ]]; then
+    funcDisplayMsg " WARNING!! " "Please press OK when you are ready to shut down" "$XC" "$YC"
+    echo "Shutting down now...."
+else
+    funcDisplayMsg " nothing " "null" "$XC" "$YC"
+    echo "meh..."
+fi
+=============================
+SCRIPT NAME : errorhandling.sh 
+=============================
+#!/bin/bash
+# demo of error handling
+
+echo "Change to a directory and list the contents"
+DIRECTORY=$1
+
+# Check if user passed an argument
+if [ "$#" = "0" ]; then
+    echo "Please pass an argument"
+    echo "Usage : errorhandling.sh <directory>"
+    exit 1
+else
+    cd $DIRECTORY 2> /dev/null
+fi
+
+# Using if
+if [ "$?" = "0" ]; then
+    ls -la
+else 
+    echo "Directory not found"
+    exit 99
+fi
+=============================
+SCRIPT NAME : function-params.sh 
+=============================
+#!/bin/bash
+# demo of functional parameter
+
+# Exit if no argument passed
+if [ "$#" = "0" ]; then
+    echo "Please pass an argument"
+    echo "Usage : function-params.sh <your_name>"
+    exit 1
+fi
+
+# Declare a global variable
+USERNAME=$1
+
+# FUNCTION DEFS
+## Calculate age in days
+funcAgeInDays (){
+    echo "Hello $USERNAME, You are $1 Years Old."
+    echo "That means you are $[ $1 * 365 ] days old... roughly"
+}
+
+# START OF SCRIPT
+clear
+
+read -p "Enter your age: " USERAGE
+# Calculate the user age in days by passing the $USERAGE variable that is read
+funcAgeInDays $USERAGE
+=============================
+SCRIPT NAME : function-ret.sh 
+=============================
+#!/bin/bash
+# demo of function return and exit
+
+# Global var declare
+YES=0
+NO=1
+FIRST=$1
+SECOND=$2
+THIRD=$3
+
+# Function definitions
+## check the command line for any arguments
+funcCheckArgs (){
+    #did we get three
+    if [[ ! -z "$THIRD" ]]; then # -z is for checking if the condition is zero/null
+        echo "We got three arguments"
+        return $YES
+    else
+        echo "We did not get three arguments"
+        return $NO
+    fi
+}
+
+# Start of script
+funcCheckArgs
+RETVAL=$?
+
+## did we get three?
+if [[ "$RETVAL" -eq "$YES" ]]; then
+    echo "We receiver three parameters and they are :"
+    echo "Param 1: $FIRST"
+    echo "Param 2: $SECOND"
+    echo "Param 3: $THIRD"
+    echo
+else
+    echo "Please give 3 arguments"
+    echo "Usage: functions-ret.sh [arg1] [arg2] [arg3]"
+    exit 90
+fi
+=============================
+SCRIPT NAME : functionsctructure.sh 
+=============================
+#!/bin/bash
+# demo of functions within a shell script structure
+
+# script or global vars
+CMDLINE=$1
+
+# Defining function
+function1 () {
+    echo "I am function number 1"
+    echo "Therefore I am called"
+}
+
+# calling
+echo "Calling function1"
+function1
+echo
+echo "Calling function2"
+function2
+
+# Demonstrating late function defining
+function2 (){
+    echo "I am function number 2"
+    echo "Therefore I am called"
+}
+
+# retry to call the function
+echo "Second try to call function2"
+function2
+=============================
+SCRIPT NAME : function.sh 
+=============================
+#!/bin/bash
+# demo simple functions
+
+echo "This is inside the script"
+
+simpleFunc (){
+    echo "This is a function inside a script"
+}
+
+simpleFunc
+=============================
+SCRIPT NAME : makedoc.sh 
+=============================
+#!/bin/bash
+# 
+
+# GLOBAL VAR DECLARE
+DOCFILE="script_listing"
+
+
+# START OF SCRIPT
+echo "#!/bin/more" > "$DOCFILE"
+
+ls *.sh > tmplisting.txt
+
+while IFS= read -r FILENAME
+do
+    if [[ -f "$FILENAME" ]]; then
+        echo "=============================" >> "$DOCFILE"
+        echo "SCRIPT NAME : $FILENAME " >> "$DOCFILE"
+        echo "=============================" >> "$DOCFILE"
+        echo
+        echo "`cat $FILENAME`" >> "$DOCFILE"
+    fi
+done < tmplisting.txt
+
+chmod 755 "$DOCFILE"
+
+rm tmplisting.txt
+=============================
+SCRIPT NAME : nested-functions.sh 
+=============================
+#!/bin/bash
+# Demo of nested functions and some abstraction
+
+# Exit if no argument passed
+if [ "$#" = "0" ]; then
+    echo "Please pass an argument"
+    echo "Usage : function-params.sh <your_name>"
+    exit 1
+fi
+
+# Declaring global variables
+GENDER=$1
+
+# Funtion definitions
+## create a human being
+funcHuman (){
+    ARMS=2
+    LEGS=2
+    funcMale (){
+        BEARD=1
+        echo "This is a man, he has $ARMS arms and $LEGS legs, with $BEARD beard"
+    }
+    funcFemale (){
+        BEARD=0
+        echo "This is a woman, she has $ARMS arms and $LEGS legs, and $BEARD beard"
+    }
+}
+
+# Start of script
+clear
+echo "Determining your characteristics based on your argument"
+echo
+
+if [[ $GENDER == "male" ]]; then
+    funcHuman
+    funcMale
+else
+    funcHuman
+    funcFemale
+fi
+=============================
+SCRIPT NAME : override.sh 
+=============================
+#!/bin/bash
+# override/trap the system exit and execute a custom function
+
+# GLOBAL VARIABLE
+TMPFILE="tmpfile.txt"
+TMPFILE2="tmpfile2.txt"
+
+
+# Traps
+trap 'funcMyExit' EXIT # Trapping exit code 90
+
+# FUNCTION DECLARATION
+## Run this exit instead of the default exit when called
+funcMyExit (){
+    echo "Exit is overriden..."
+    echo "Cleaning up the temp files..."
+    rm -r tmpfil*.txt
+    exit 55
+}
+
+
+# START OF SCRIPT
+echo "Write something to tmp file for later use..." > $TMPFILE
+echo "Writing temp file number 2" > $TMPFILE2
+
+echo
+
+echo "Trying to copy the tempfiles"
+cp -rf $1 copied$1 2> /dev/null
+
+if [[ "$?" == "0" ]]; then
+    echo "Done"
+else
+    echo "Something is wrong"
+    exit 90
+fi
+=============================
+SCRIPT NAME : param-check-if.sh 
+=============================
+#!/bin/bash
+# 
+
+
+# The usual check with if
+if [[ "$#" != "3" ]]; then
+    echo "USAGE : param-check.sh [param1] [param3]"
+    exit 24
+fi
+=============================
+SCRIPT NAME : param-check-robust.sh 
+=============================
+#!/bin/bash
+# 
+
+
+# The more robust way to do it
+# This will check if there are 3 arguments passed, and we can pass the arguments specified to the echo
+# this script will also exit with a error code 1.
+: ${3?"USAGE : param-check.sh $1[arg1] $2[arg2] [arg3]"}
+=============================
+SCRIPT NAME : readfile.sh 
+=============================
+#!/bin/bash
+# simple file reading
+
+read -p "Enter a filename to read :" FILENAME
+echo
+
+while read -r SUPERHERO; do
+    echo " Superhero Name : $SUPERHERO"
+done < "$FILENAME"
+=============================
+SCRIPT NAME : simpleinfobox.sh 
+=============================
+#!/bin/bash
+# Demo of simple infobox with dialog and ncurses
+
+# Global variables declaration
+INFOBOX=${INFOBOX=dialog}
+TITLE="Default"
+MESSAGE="Some messages"
+XCOORD=10
+YCOORD=40
+
+# Function Declaration
+## Display the infobox with our message
+funcDisplayInfo (){
+    $INFOBOX --title "$1" --infobox "$2" "$3" "$4"
+    sleep "$5"
+}
+
+# Start of script
+if [ "$1" == "shutdown" ]; then
+    funcDisplayInfo "WARNING!" "WE ARE SHUTTINGDOWN THE SYSTEM" "$XCOORD" "$YCOORD" "3"
+    echo "Shutting down!"
+else
+    funcDisplayInfo "Information..." "You are not doing anything" "11" "21" "3"
+    echo "booooooooo"
+fi
+=============================
+SCRIPT NAME : template.sh 
+=============================
+#!/bin/bash
+# 
+=============================
+SCRIPT NAME : variable-scope.sh 
+=============================
+#!/bin/bash
+# demo of variable scopes
+
+# Declaring global variables
+GLOBALVAR="Globally Visible"
+
+# Defining functions
+# Sample function for variable scope
+funExample (){
+    # Function-local variable
+    LOCALVAR="Locally visible"
+
+    echo "From funExample, the local var is $LOCALVAR"
+    echo "and the global var is $GLOBALVAR"
+}
+
+# Script - Start
+clear
+
+echo "Now I am started"
+echo "I know that GLOBALVAR is $GLOBALVAR"
+echo "I dont know what the LOCALVAR is? trying? $LOCALVAR"
+echo 
+echo "Now I am calling my function"
+echo
+funExample
+echo
+echo " now i know that LOCALVAR is = $LOCALVAR"
