@@ -100,5 +100,115 @@ https://docs.python.org/3/whatsnew/3.0.html
     - bool("Literally anything you want") = True
 
 #### None
-- like null
+- null value for python
 - its None, with capital **N**
+
+
+# Lecture : Working with variables
+- `<varname> = <value>`
+- function(varname)
+- `varname += <anothervalue>`
+- if you assign a variable to a value of another variable, when that second variable is changed, the first variable wont change because its not a pointer. all variables assinged as a value.
+
+# Lecture : Lists
+- Lists are mutable, means you can manipulate whats inside a list
+- list = [val1, 2, val3]
+- it is not type specific, so you can assign string and integer in one list
+
+#### Appending
+- len() is one function that you can use in lists, to count the total index of the list
+- append() is a function we can use to add index to the list
+- `+=` also can be used to append indexes to the list
+
+#### Calling a list
+- my_list(n) = call index number n of list `my_list`
+- my_list[0:1] = call index number 0 until 1 of `my_list`
+- my_list[0:4:2] = call index number 0 until 4 with 2 __slices__
+
+#### Removing indexes
+- using the remove() function
+    - my_list.remove('a') -> will remove the first index found containing 'a' (starting from 0)
+- using the pop() function
+    - my_list.pop() -> by default will remove AND return the value of the last index
+    - my_list.pop(n) -> will remove AND return the value of index n
+
+#### Replacing an index with another value
+- my_list[0:2] = ['a', 'b'] -> will replace index number 0 and 1 to 'a' and 'b'
+    - read carefully, index number 2 is not replaced
+
+
+# Lecture : Tuples
+- are a fixed width, immutable sequence type. We create tuples using parenthesis (( and )) and at least one comma (,)
+- tuple = ("string", 1, 2.0)
+- IMMUTABLE, cant be smaller, cant be bigger
+- The most common use of tuples is when we need text formatting
+    - example
+    ```
+    print("My name is %s and my age is %s" % ("Dika", 22))
+    ```
+
+# Lecture : Dictionary
+- It is like what it said, it has a 'key' and a 'value'
+- Think like you are looking at an actual dictionary and looking for certain words
+- dictionary = {} --> an empty dictionary
+- Creating a dictionary
+    - dictionary = ['key1': val, 'key2': val2, 'key3': val3]
+    - dictionary = dict(key1=val1, key2=val2, key3=val3)
+    - dictionary = dict([('key1', 'val1'), ('key2', 'val2'), ('key3', 'val3')]) --> using TUPLES!!
+- The keys have to be **unique**
+
+#### Working with a dictionary
+- list all keys
+    - dictionary.keys()
+    - list(dictionary.keys())
+- list all values
+    - dictionary.values()
+    - list(dictionary.ages())
+- what is the value that is inside key1
+    - dictionary['key1'] -> this will do that for you
+- add a new key
+    - dictionary['key4'] = val4
+- Delete
+    - del dictionary['key4']
+    - be careful with del as you can delete the whole dictionary with it [del dictionary]
+- Popping
+    - dictionary.pop('key4')
+
+
+# Lecture : Conditionals and Comparisons
+- We need to compare a same type. e.g int with int
+- For characters, it is case sensitive, and each character have specific values
+
+```
+=========================================
+            CONDITIONALS
+=========================================
+< less than
+> more than
+== equals
+!= not equals
+>= greater than and equals
+<= lesser than and equals
+==========================================
+x in [x,y,z] --> check whether x in the list
+x not in [x,y,z] --> check whether x not in the list
+```
+
+#### The if statement
+```
+if <condition>:
+    <command>
+elif <condition>:
+    <command>
+else:
+    <command>
+```
+- you dont always need to specify the else, or even the elif
+
+
+# Lecture : Loop
+- see bin/nested-loop.py for more details and demonstration
+- Remember that the boolean (True/False) will always be true if you dont specify the condition
+- `continue` will throw you out of the loop/statement and start over from the top
+- `break` will throw you out from the loop, like `continue` and **STOP**
+
