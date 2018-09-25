@@ -59,11 +59,10 @@ THE BOURNE AGAIN SHELL
     - example expr 2 + 2
     - SPACES MATTER!!!1
     - operations :
-        - / = divide
-        - \* = multiply --> notice that we need to escape so it sees it as math operation and not a wildcard
-        - + - = u know what it means
-        - % = modulus
-        -
+        - `/` = divide
+        - `\*` = multiply --> notice that we need to escape so it sees it as math operation and not a wildcard
+        - `+ -` = u know what it means
+        - `%` = modulus
     - this follows order of precedence, which means multiplication done first before substitution
     - can grouped with () with an escape
         - example expr \(2 + 2 \) \* 5
@@ -87,9 +86,17 @@ THE BOURNE AGAIN SHELL
 
 # Simple Functions
 - functions cant be empty
+- IT IS NOT AN OBJECT!!
+- You *cant* call a function if it is not defined yet, like if you define a function at the bottom of the script
 - Usage :
     ```
     functionName () {
     command
     }
     functionName2 () { command ; }
+    ```
+- Its one of a best/good practice to structure your commands inside a function
+    - see functionsctructure.sh inside bin
+
+# Variable Scope
+
