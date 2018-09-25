@@ -67,3 +67,38 @@ https://docs.python.org/3/whatsnew/3.0.html
     - helloolleh
     because you operate a function to the string
 
+# Lecture : Numbers (int and float)
+- Strings and numbers are immutable
+- Math Operations
+    ```
+    +  is a substitute
+    -  is a substraction
+    *  is a multiplication
+    /  is a division
+    //  is a floor division, means it rounded down
+    %  is a modulus
+    **  is an exponent
+    ```
+- When a float is operated with an integer, it will return a **float**
+    - 2.0 * 2 = 4.0
+
+#### How to convert types
+- say you have "1" assigned to variable, that will be seen as a `string` type
+- you want to convert it into an int, then you can do
+    ```
+    int("1")
+    ```
+    to parse it into an integer type
+
+# Lecture : Booleans and None
+#### Boolean
+- `True` and `False`
+- Everything has a boolean value to it.
+- the bool() function
+    - bool({}) = False
+    - bool("") = False
+    - bool("Literally anything you want") = True
+
+#### None
+- like null
+- its None, with capital **N**
