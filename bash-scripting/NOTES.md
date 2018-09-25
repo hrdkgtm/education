@@ -1,3 +1,6 @@
+# DISCLAIMER
+This is notes derived from the course in linuxacademy.com called "The System Administrator's Guide to Bash Scripting" by Terrence
+
 # HISTORY
 - Shells are command line interpreters, begin with the first unix shell back in 1971, called the V6 shell.
 - The bourne shell was introduced in 1977 by Stephen Bourne, at Bell Labs fot V7 UNIX.
