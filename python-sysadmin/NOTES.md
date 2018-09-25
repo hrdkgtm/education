@@ -212,3 +212,15 @@ else:
 - `continue` will throw you out of the loop/statement and start over from the top
 - `break` will throw you out from the loop, like `continue` and **STOP**
 
+## The For Loop
+- behaves like bash, the for loop will iterate through each index
+- See bin/forloop for the basic loop
+- See bin/dic-for to see how you can work through a dictionary
+
+
+# Lecture : Logic Operations
+```
+not --- give the opposite as boolean value
+or --- True if any value is True *will return immidiately after python finds a True value
+and --- True if ALL value is True *will return immidiately after python finds a False value
+```
