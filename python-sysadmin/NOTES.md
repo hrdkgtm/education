@@ -339,7 +339,29 @@ finally:
     do this whether there is an error or not
 ```
 
+## Lecture : Exit statuses
+
+using the **sys module** to return exit status of the script
+https://docs.python.org/3/library/sys.html
+` sys.exit(n)`
+
+## Lecture : Using Shell command
+
+The `subprocess` module
+https://docs.python.org/3/library/subprocess.html
+
+```
+import subprocess
+
+variable = subprocess.run(['command','options'], stdout=subprocess.PIPE, stderr=subprocess.PIPE,)
+variable.stdout
+variable.stderr
+
+print(f"this is the stdout {variable.stdout.decode()}")
+```
+
+Notice how we decode the stdout first, this is because the standard output that we get from the shell is in a bytes format, so we have to decode it using the `decode()` function. which by default will decode the output into UTF8
 
 #### footnotes
-- Be careful on naming the script not to be the same as the module that you are importing
 
+- Be careful on naming the script not to be the same as the module that you are importing

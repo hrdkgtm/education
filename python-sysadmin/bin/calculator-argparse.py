@@ -13,14 +13,19 @@ parser.add_argument('--version', '-v', action='version', version='%(prog)s %(des
 
 # declaring the args
 args = parser.parse_args()
-
+# Error handling 101
 # If the exponential option is specified
-if args.exponent:
-    result = (args.firstint + args.secondint) ** args.exponent
-    print(result)
+try:
+    type(args.exponent) is float
+except TypeError as err:
+    print(f"{err}")
 else:
-    result = args.firstint + args.secondint
-    print(result)
+    if args.exponent:
+        result = (args.firstint + args.secondint) ** args.exponent
+        print(result)
+    else:
+        result = args.firstint + args.secondint
+        print(result)
 
 # The calculator
 # print(args.firstint + args.secondint)
