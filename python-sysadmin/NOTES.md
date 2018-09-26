@@ -362,6 +362,10 @@ print(f"this is the stdout {variable.stdout.decode()}")
 
 Notice how we decode the stdout first, this is because the standard output that we get from the shell is in a bytes format, so we have to decode it using the `decode()` function. which by default will decode the output into UTF8
 
+## Lecture : Advanced iteration with list comprehensions
+
+An interesting one, see **bin/contains.py** for more details
+
 #### footnotes
 
 - Be careful on naming the script not to be the same as the module that you are importing
