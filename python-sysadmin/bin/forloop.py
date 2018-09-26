@@ -1,6 +1,6 @@
-#!/usr/bin/python3.7
-# FOr loop demo
-
+#!/usr/bin/env python3
+# For loop demo
+        
 colors=['blue', 'green', 'red', 'purple'] # make a LIST of colors
 
 for color in colors:

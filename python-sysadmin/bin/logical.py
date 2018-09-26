@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/env python3
 # Demonstrate how logical operations work
 
 #assign name to an empty value

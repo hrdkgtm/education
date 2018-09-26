@@ -1,15 +1,17 @@
 # DISCLAIMER
+
 This is a notes derived from linuxacademy.com course called "Python 3 Scripting for System Administrator" by Keith Thompson
 
 Prerequisites in the machine :
+
 - git
 - wget
 - words (/usr/share/dict/words
 - lsof
 - text editor
 
+## HISTORY AND BENEFITS OF PYTHON
 
-# HISTORY AND BENEFITS OF PYTHON
 - Created by Guido van Rossun at 1991
 - Used and supported by tech giants like **Google** and **Youtube**
 - It is an *Object Oriented* **Scripting** Language
@@ -20,8 +22,8 @@ Prerequisites in the machine :
 - Runs on all major OS, most Linux distro comes with python out-of-the-box
 - As of this note is written (25-09-2018), python is ranked 3 in TIOBE index (most searched programming language)
 
+## What's the deal with Python 3?
 
-# What's the deal with Python 3?
 - Python 3 was released in 2008, it was created for a very specific reason
 - in 2020 python 2 wont be supported anymore.
 https://wiki.python.org/moin/Python2orPython3
@@ -30,14 +32,18 @@ https://docs.python.org/3/whatsnew/3.0.html
 
 
 #### Introduction to REPL (Read Evaluate Print Loop) for rapid experimentation
+
 - just run the python binary from the command line, and you will get thrown into the python interpreter
 - Double quotes (") and single quotes (') doesnt matter like bash
 
 #### Creating and Running python scripts
+
 - #!/usr/bin/python3.7 -> use accordingly to your python binary
 
 #### Using comments
+
 - format
+
     ```
     # this is a comment
     command # this is also a comment
@@ -48,7 +54,8 @@ https://docs.python.org/3/whatsnew/3.0.html
     """
     ```
 
-# Lecture : Strings
+## Lecture : Strings
+
 - Remember that python doesnt care about double and single quotes
 - You can do math operations on string!!!
     ```
@@ -67,7 +74,8 @@ https://docs.python.org/3/whatsnew/3.0.html
     - helloolleh
     because you operate a function to the string
 
-# Lecture : Numbers (int and float)
+## Lecture : Numbers (int and float)
+
 - Strings and numbers are immutable
 - Math Operations
     ```
@@ -83,6 +91,7 @@ https://docs.python.org/3/whatsnew/3.0.html
     - 2.0 * 2 = 4.0
 
 #### How to convert types
+
 - say you have "1" assigned to variable, that will be seen as a `string` type
 - you want to convert it into an int, then you can do
     ```
@@ -90,8 +99,10 @@ https://docs.python.org/3/whatsnew/3.0.html
     ```
     to parse it into an integer type
 
-# Lecture : Booleans and None
+## Lecture : Booleans and None
+
 #### Boolean
+
 - `True` and `False`
 - Everything has a boolean value to it.
 - the bool() function
@@ -100,32 +111,38 @@ https://docs.python.org/3/whatsnew/3.0.html
     - bool("Literally anything you want") = True
 
 #### None
+
 - null value for python
 - its None, with capital **N**
 
 
-# Lecture : Working with variables
+## Lecture : Working with variables
+
 - `<varname> = <value>`
 - function(varname)
 - `varname += <anothervalue>`
 - if you assign a variable to a value of another variable, when that second variable is changed, the first variable wont change because its not a pointer. all variables assinged as a value.
 
-# Lecture : Lists
+## Lecture : Lists
+
 - Lists are mutable, means you can manipulate whats inside a list
 - list = [val1, 2, val3]
 - it is not type specific, so you can assign string and integer in one list
 
 #### Appending
+
 - len() is one function that you can use in lists, to count the total index of the list
 - append() is a function we can use to add index to the list
 - `+=` also can be used to append indexes to the list
 
 #### Calling a list
+
 - my_list(n) = call index number n of list `my_list`
 - my_list[0:1] = call index number 0 until 1 of `my_list`
 - my_list[0:4:2] = call index number 0 until 4 with 2 __slices__
 
 #### Removing indexes
+
 - using the remove() function
     - my_list.remove('a') -> will remove the first index found containing 'a' (starting from 0)
 - using the pop() function
@@ -133,11 +150,13 @@ https://docs.python.org/3/whatsnew/3.0.html
     - my_list.pop(n) -> will remove AND return the value of index n
 
 #### Replacing an index with another value
+
 - my_list[0:2] = ['a', 'b'] -> will replace index number 0 and 1 to 'a' and 'b'
     - read carefully, index number 2 is not replaced
 
 
-# Lecture : Tuples
+##  : Tuples
+
 - are a fixed width, immutable sequence type. We create tuples using parenthesis (( and )) and at least one comma (,)
 - tuple = ("string", 1, 2.0)
 - IMMUTABLE, cant be smaller, cant be bigger
@@ -147,7 +166,8 @@ https://docs.python.org/3/whatsnew/3.0.html
     print("My name is %s and my age is %s" % ("Dika", 22))
     ```
 
-# Lecture : Dictionary
+## Lecture : Dictionary
+
 - It is like what it said, it has a 'key' and a 'value'
 - Think like you are looking at an actual dictionary and looking for certain words
 - dictionary = {} --> an empty dictionary
@@ -158,6 +178,7 @@ https://docs.python.org/3/whatsnew/3.0.html
 - The keys have to be **unique**
 
 #### Working with a dictionary
+
 - list all keys
     - dictionary.keys()
     - list(dictionary.keys())
@@ -175,7 +196,8 @@ https://docs.python.org/3/whatsnew/3.0.html
     - dictionary.pop('key4')
 
 
-# Lecture : Conditionals and Comparisons
+## Lecture : Conditionals and Comparisons
+
 - We need to compare a same type. e.g int with int
 - For characters, it is case sensitive, and each character have specific values
 
@@ -195,32 +217,129 @@ x not in [x,y,z] --> check whether x not in the list
 ```
 
 #### The if statement
-```
-if <condition>:
-    <command>
-elif <condition>:
-    <command>
-else:
-    <command>
-```
+
 - you dont always need to specify the else, or even the elif
 
 
-# Lecture : Loop
+## Lecture : Loop
+
 - see bin/nested-loop.py for more details and demonstration
 - Remember that the boolean (True/False) will always be true if you dont specify the condition
 - `continue` will throw you out of the loop/statement and start over from the top
 - `break` will throw you out from the loop, like `continue` and **STOP**
 
-## The For Loop
+#### The For Loop
+
 - behaves like bash, the for loop will iterate through each index
 - See bin/forloop for the basic loop
 - See bin/dic-for to see how you can work through a dictionary
 
 
-# Lecture : Logic Operations
+## Lecture : Logic Operations
+
 ```
 not --- give the opposite as boolean value
 or --- True if any value is True *will return immidiately after python finds a True value
 and --- True if ALL value is True *will return immidiately after python finds a False value
 ```
+
+LOST ARTIFACTS 
+
+## Lecture : Using standard library packages
+
+Documentation of the standard libraries included with python
+https://docs.python.org/3/library/index.html
+- If you need a specific library that is not included in your system, you have to install it yourself either with the appropriate package manager
+- We can utilize the available library from python and use it according to our needs
+- We need to import specific library before we can use them
+`import <library_name>`
+`from <library_name> import <function1>, <function2>`
+- Refer back to the official documentation on how to use each and every library
+
+
+#### Time
+
+```
+>>> import time
+>>> now = time.localtime()
+>>> now
+time.struct_time(tm_year=2018, tm_mon=9, tm_mday=26, tm_hour=9, tm_min=41, tm_sec=33, tm_wday=2, tm_yday=269, tm_isdst=0)
+>>> now.tm_year
+2018
+>>> now.tm_wday
+2
+>>>
+```
+- Example script : bin/stopwatch.py
+
+
+## Lecture : Working with environment variables
+
+one of the most important packages for sysadmins are the `os` package
+https://docs.python.org/3/library/os.html
+
+More info on the usage and demonstration of the os package/library :
+bin/os-environment.py
+
+
+## Lecture : Interacting with files
+
+Function = open()
+https://docs.python.org/3/library/functions.html#open
+Module = io
+https://docs.python.org/3/library/io.html#io-overview
+
+Notes:
+- Be careful when reading a file with a `for` loop, when you do something like
+```
+>>> for line in students:
+...     print(line)
+...
+```
+    this will weirdly output extra `newline` characters like
+    Entry1
+
+    Entry2
+
+    Entry3
+- Therefore, if you want to print a string that is formatted with a new line, this is a more "beautiful" syntax
+```
+>>> for line in students:
+...     print(line, end="")
+...
+```
+    Go try it yourself if you still dont understand what im sayin
+- remember to always close the file after you open it in python as it will remain in the memory and can cause a lot of overhead later on
+- A good way of working with files is to separate variable for reading and writing so you can call them later
+```
+>>> xmen_base = open('xmen_base.txt')
+>>> new_xmen = open('new_xmen.txt', 'w')
+```
+
+## Lecture : Robust CLI with 'ardparse'
+
+argparse is a really awesome module that you can use to add parameters needed for your script
+https://docs.python.org/3/library/argparse.html
+- be sure to complete the tutorial of argparse to know what you can do with positional and optional parameters
+- a demonstration of this module can be seen from the calculator program in
+  bin/calculator-argparse.py
+
+## Lecture : Handling Errors
+##### The try statement 
+https://docs.python.org/3/reference/compound_stmts.html#the-try-statement
+Summary:
+```
+try:
+    something
+except <errormsg> as <msg_of_error>:
+    something to do when error is catched
+else:
+    do this if no error is catched
+finally:
+    do this whether there is an error or not
+```
+
+
+#### footnotes
+- Be careful on naming the script not to be the same as the module that you are importing
+

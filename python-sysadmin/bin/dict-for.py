@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/env python3
 # Demonstrating for loop with a dictionary
 
 users=dict([('dika','admin'), ('bob','pleb'), ('john','killer')])

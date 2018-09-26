@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/env python3
 # Exercise on creating and displaying variables
 
 ## Variable Declaration

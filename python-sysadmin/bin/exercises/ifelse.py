@@ -1,4 +1,4 @@
-#!/usr/bin/python3.7
+#!/usr/bin/env python3
 # A script that has a dictionary
 
 # Declaring Variables
