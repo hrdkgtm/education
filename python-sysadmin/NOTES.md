@@ -344,7 +344,7 @@ finally:
 using the **sys module** to return exit status of the script
 https://docs.python.org/3/library/sys.html
 ` sys.exit(n)`
-
+s.kill(pid, 9)
 ## Lecture : Using Shell command
 
 The `subprocess` module
